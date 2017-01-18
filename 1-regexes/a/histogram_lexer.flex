@@ -15,9 +15,9 @@
 
 %%
 
-[0-9]+          { fprintf(stderr, "Number\n"); /* TODO: get value out of yytext and into yylval.number */;  return Number; }
+[0-9]+/.?[0-9]+          { fprintf(stderr, "Number\n"); /* TODO: get value out of yytext and into yylval.number */;  return Number; }
 
-[a-z]+          { fprintf(stderr, "Word\n"); /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
+[a-z][A-Z]+          { fprintf(stderr, "Word\n"); /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
 
 \n              { fprintf(stderr, "Newline\n", *yytext); }
 
