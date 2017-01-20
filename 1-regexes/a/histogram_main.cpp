@@ -44,7 +44,6 @@ int main()
             return 1;
         }
     }
-    
     std::cout << std::setprecision(3) << std::fixed;
     std::cout << sum << std::endl;
     // TODO: print out `sum` to std::cout with three decimal digits
@@ -63,8 +62,7 @@ int main()
     while(it!=sorted.end()){
         std::string name=it->first;
         unsigned count=it->second;
-	  
-	  std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
+	 // std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
         // TODO: Print out `name` and `count` to std::cout
         
         

@@ -25,11 +25,10 @@
 
 [a-z][A-Z]+         { fprintf(stderr, "Word\n"); 
 			std::string s = strdup(yytext); 
-			yylval.wordValue = &s
-		/*TODO: get value out of yytext and into yylval.wordValue */;  
+			yylval.wordValue = &s;
+		/*TODO: get value out of yytext and into yylval.wordValue */  
 			return Word; }
-
-\n              { fprintf(stderr, "Newline\n", *yytext); }
+\n             { fprintf(stderr, "Newline\n", *yytext); } 
 
 
 %%
