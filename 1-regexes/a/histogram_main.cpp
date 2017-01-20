@@ -62,7 +62,7 @@ int main()
     while(it!=sorted.end()){
         std::string name=it->first;
         unsigned count=it->second;
-	 // std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
+	  std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
         // TODO: Print out `name` and `count` to std::cout
         
         
