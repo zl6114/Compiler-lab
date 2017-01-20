@@ -35,7 +35,7 @@ int main()
             // _pointed to_ by yylval.wordValue. Note that
             // the string is allocated by the lexer, but
             // deallocated by us.
-		histogram[&wordValue] += 1;
+		histogram[*yylval.wordValue] += 1;
             // TODO: add yylval.wordValue to histogram
 		delete yylval.wordValue;
             // TODO: Free the pointer yylval.wordValue to stop leaks
@@ -64,7 +64,7 @@ int main()
         std::string name=it->first;
         unsigned count=it->second;
 	  
-	  std::cout << name << "  " << count << std::endl;
+	  std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
         // TODO: Print out `name` and `count` to std::cout
         
         

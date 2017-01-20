@@ -7,7 +7,7 @@
 
 /* Bring in our declarations for token types and
    the yylval variable. */
-#incldue <vector>
+
 #include <string>
 #include "histogram.hpp"
 
@@ -18,11 +18,16 @@
 
 %%
 
-[0-9]+/.?[0-9]+          { fprintf(stderr, "Number\n"); yylval.numberValue = atoi(yytext)
-					/* TODO: get value out of yytext and into yylval.number */ ;  return Number; }
+[0-9]+         { fprintf(stderr, "Number\n"); 
+				yylval.numberValue = atoi(yytext)
+		/* TODO: get value out of yytext and into yylval.number */ ;  
+				return Number; }
 
-[a-z][A-Z]+         { fprintf(stderr, "Word\n"); std::string s = strdup(yytext); yylval.wordValue = &s
-				/*TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
+[a-z][A-Z]+         { fprintf(stderr, "Word\n"); 
+			std::string s = strdup(yytext); 
+			yylval.wordValue = &s
+		/*TODO: get value out of yytext and into yylval.wordValue */;  
+			return Word; }
 
 \n              { fprintf(stderr, "Newline\n", *yytext); }
 
