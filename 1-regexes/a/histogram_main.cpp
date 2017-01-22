@@ -35,9 +35,9 @@ int main()
             // _pointed to_ by yylval.wordValue. Note that
             // the string is allocated by the lexer, but
             // deallocated by us.
-		
+	    histogram.insert({*yylval.wordValue, 1});
             // TODO: add yylval.wordValue to histogram
-
+	    delete yylval.wordValue;
             // TODO: Free the pointer yylval.wordValue to stop leaks
         }else{
             assert(0); // There are only three token types.
@@ -45,7 +45,7 @@ int main()
         }
     }
 	    std::cout << std::setprecision(3) << std::fixed;
-	    std::cout << sum << std::endl;
+	    std::cout <<sum<< std::endl;
 
     // TODO: print out `sum` to std::cout with three decimal digits
     
@@ -65,7 +65,7 @@ int main()
         unsigned count=it->second;
         // TODO: Print out `name` and `count` to std::cout
         
-        
+        std::cout << "\"" << name << "\"" << " " << count << std::endl; 
         ++it;
     }
 

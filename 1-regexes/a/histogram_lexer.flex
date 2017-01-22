@@ -21,9 +21,12 @@
 				
  /* TODO: get value out of yytext and into yylval.number */;  return Number; }
 
-[a-z]+          { fprintf(stderr, "Word\n"); /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
+[a-zA-z]+|("[a-zA-Z]+") { fprintf(stderr, "Word\n"); 
+			std::string s = yytext;
+			yylval.wordValue  = &s;
+/* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
 
-[\n]|\s          { fprintf(stderr, "Newline\n", *yytext); }
+\n       { fprintf(stderr, "Newline\n", *yytext); }
 
 
 %%
