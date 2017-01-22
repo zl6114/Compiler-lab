@@ -6,7 +6,7 @@
 enum TokenType{
     None   = 0, // This indicates there are no more tokens
     Number = 1, // token codes must be positive
-    Word   //= 2, // implicit from C++ enumeration
+    Word   = 2, //implicit from C++ enumeration
 };
 
 union TokenValue{

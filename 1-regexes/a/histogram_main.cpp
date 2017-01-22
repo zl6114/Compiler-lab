@@ -27,7 +27,7 @@ int main()
         }else if(type==Number){
             // We have a number. The value will be
             // in yylval.numberValue
-		sum = sum + yylval.numberValue;
+	    sum = sum + yylval.numberValue;
             // TODO: add to sum
             
         }else if(type==Word){
@@ -35,17 +35,18 @@ int main()
             // _pointed to_ by yylval.wordValue. Note that
             // the string is allocated by the lexer, but
             // deallocated by us.
-		histogram[*yylval.wordValue] += 1;
+		
             // TODO: add yylval.wordValue to histogram
-		delete yylval.wordValue;
+
             // TODO: Free the pointer yylval.wordValue to stop leaks
         }else{
             assert(0); // There are only three token types.
             return 1;
         }
     }
-    std::cout << std::setprecision(3) << std::fixed;
-    std::cout << sum << std::endl;
+	    std::cout << std::setprecision(3) << std::fixed;
+	    std::cout << sum << std::endl;
+
     // TODO: print out `sum` to std::cout with three decimal digits
     
     std::vector<std::pair<std::string,double> > sorted(histogram.begin(), histogram.end());
@@ -62,7 +63,6 @@ int main()
     while(it!=sorted.end()){
         std::string name=it->first;
         unsigned count=it->second;
-	  std::cout <<"\"" << name << "\"" << " " << 1 << std::endl;
         // TODO: Print out `name` and `count` to std::cout
         
         
