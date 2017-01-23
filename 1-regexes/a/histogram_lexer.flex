@@ -16,18 +16,19 @@
 %%
 
 -?(?:[0-9]+\.)?[0-9]+ { fprintf(stderr, "Number\n");
-		
-			yylval.numberValue = atoi(yytext)		
+			yylval.numberValue = std::stof(yytext)		
 				
  /* TODO: get value out of yytext and into yylval.number */;  return Number; }
 
 [a-zA-z]+|("[a-zA-Z]+") { fprintf(stderr, "Word\n"); 
-			std::string s = yytext;
-			yylval.wordValue  = &s;
+			std::string *s = new std::string();
+			&s = yytext; 
+			yylval.wordValue  = yytext;
 /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
 
 \n       { fprintf(stderr, "Newline\n", *yytext); }
 
+. {}
 
 %%
 
