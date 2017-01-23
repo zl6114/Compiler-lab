@@ -20,10 +20,10 @@
 				
  /* TODO: get value out of yytext and into yylval.number */;  return Number; }
 
-[a-zA-z]+|("[a-zA-Z]+") { fprintf(stderr, "Word\n"); 
-			std::string *s = new std::string();
-			&s = yytext; 
-			yylval.wordValue  = yytext;
+[a-zA-z]+|("[a-zA-Z]+")|("[0-9+]") { fprintf(stderr, "Word\n"); 
+			std::string s(yytext);
+			yylval.wordValue = new std::string();
+			*yylval.wordValue = s;
 /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
 
 \n       { fprintf(stderr, "Newline\n", *yytext); }
