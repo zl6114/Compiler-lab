@@ -35,7 +35,9 @@ int main()
             // _pointed to_ by yylval.wordValue. Note that
             // the string is allocated by the lexer, but
             // deallocated by us.
-	    histogram[*yylval.wordValue] += 1;
+	    std::string tmp = *yylval.wordValue;
+	    tmp.erase (std::remove(tmp.begin(), tmp.end(), '\"'), tmp.end());
+	    histogram[tmp] += 1;
             // TODO: add yylval.wordValue to histogram
 	    delete yylval.wordValue;
             // TODO: Free the pointer yylval.wordValue to stop leaks
