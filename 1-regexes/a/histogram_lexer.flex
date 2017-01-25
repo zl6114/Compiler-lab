@@ -20,7 +20,7 @@
 				
  /* TODO: get value out of yytext and into yylval.number */;  return Number; }
 
-\"([0-9a-zA-Z \n\t\r]+)\"|[a-zA-Z]+ { fprintf(stderr, "Word\n"); 
+\"([0-9a-zA-Z   \n\t\r\%\:\\\_\(\)\>\-\{\}\?\.\+\[\]\*\|]+)\"|[a-zA-Z]+ { fprintf(stderr, "Word\n"); 
 			std::string s(yytext);
 			yylval.wordValue = new std::string();
 			*yylval.wordValue = s;
