@@ -33,13 +33,21 @@
 ROOT : EXPR { g_root = $1; }
 
 EXPR : TERM                 { $$ = $1; }
+     | EXPR T_PLUS TERM       { $$ = new AddOperator($1,$3);}
+     | EXPR T_MINUS TERM       { $$ = new SubOperator($1,$3);}
 
 TERM : FACTOR               { $$ = $1; }
+     | TERM T_DIVIDE FACTOR     { $$ = new DivOperator($1,$3);}
+     | TERM T_TIMES FACTOR     { $$ = new MulOperator($1,$3);}
 
 FACTOR : T_NUMBER           { $$ = new Number( $1 ); }
-       | T_LBRACKET EXPR T_RBRACKET { $$ = $2; }
+       | T_LBRACKET EXPR T_RBRACKET { $$ = $2 ; }
+       | T_VARIABLE         { $$ = new Variable(*$1);}
+       | FUNCTION_NAME T_LBRACKET EXPR T_RBRACKET     { if(*$1 == "log"){ $$ = new LogFunction($3);}else if(*$1 == "exp"){ $$ = new ExpFunction($3);}else if(*$1 == "sqrt"){ $$ = new SqrtFunction($3);}}
 
 FUNCTION_NAME : T_LOG { $$ = new std::string("log"); }
+              | T_EXP { $$ = new std::string("exp"); }
+              | T_SQRT{ $$ = new std::string("sqrt");}
 
 %%
 
