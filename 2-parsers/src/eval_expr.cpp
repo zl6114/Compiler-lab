@@ -5,10 +5,10 @@
 int main(int argc, char *argv[])
 {
     std::map<std::string,double> bindings;
-
-    std::cout << argv[0] << '\n';
-    std::cout << argv[1] << '\n';
-
+    
+    for(int i = 0; i < argc; i = i+2){
+        map(argv[i])
+    }
     // TODO : for each pair of arguments:
     //  - read the variable name
     //  - parse the value
