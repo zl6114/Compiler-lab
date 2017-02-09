@@ -17,8 +17,8 @@ public:
     virtual double evaluate(
         const std::map<std::string,double> &bindings
     ) const
-    { throw std::runtime_error("Not implemented."); }
-
+    { throw std::runtime_error("Not implemented."); //std::cout << "implemented" << '\n';}
+    }
     //! Return a new tree which is the derivative w.r.t. given variable
     virtual const Expression *differentiate(
         const std::string &variable

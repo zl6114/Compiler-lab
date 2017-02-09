@@ -53,7 +53,10 @@ public:
     AddOperator(const Expression *_left, const Expression *_right)
         : Operator(_left, _right)
     {}
-    
+    virtual double evaluate(
+    const std::map<std::string,double> &bindings
+    ) const
+    {return (getLeft()->evaluate(bindings) + getRight()->evaluate(bindings));}
 };
 
 class SubOperator
@@ -66,7 +69,10 @@ public:
     SubOperator(const Expression *_left, const Expression *_right)
         : Operator(_left, _right)
     {}
-    
+    virtual double evaluate(
+    const std::map<std::string,double> &bindings
+    ) const
+    {return (getLeft()->evaluate(bindings) - getRight()->evaluate(bindings));}
 };
 
 class MulOperator
@@ -79,7 +85,10 @@ public:
     MulOperator(const Expression *_left, const Expression *_right)
         : Operator(_left, _right)
     {}
-    
+    virtual double evaluate(
+    const std::map<std::string,double> &bindings
+    ) const
+    {return (getLeft() -> evaluate(bindings) * getRight() -> evaluate(bindings));}
 };
 
 class DivOperator
@@ -92,7 +101,10 @@ public:
     DivOperator(const Expression *_left, const Expression *_right)
         : Operator(_left, _right)
     {}
-    
+    virtual double evaluate(
+    const std::map<std::string,double> &bindings
+    )const
+    {return (getLeft() -> evaluate(bindings) / getRight() -> evaluate(bindings));}
 };
 
 #endif

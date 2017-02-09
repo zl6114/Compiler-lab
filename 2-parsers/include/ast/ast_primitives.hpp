@@ -21,7 +21,14 @@ public:
     {
         std::cout<<id;
     }
-    
+    virtual double evaluate(
+        const std::map<std::string,double> &bindings
+    ) const
+    {
+        double x = bindings.at(id);
+        return x;
+    }
+
 };
 
 class Number
@@ -41,7 +48,12 @@ public:
     {
         std::cout<<value;
     }
-    
+    virtual double evaluate(
+        const std::map<std::string,double> &bindings
+    ) const
+    { return value;
+    }
+
 };
 
 
