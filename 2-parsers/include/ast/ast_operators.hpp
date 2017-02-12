@@ -57,6 +57,11 @@ public:
     const std::map<std::string,double> &bindings
     ) const
     {return (getLeft()->evaluate(bindings) + getRight()->evaluate(bindings));}
+    
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    { throw std::runtime_error("Not implemented."); }
 };
 
 class SubOperator

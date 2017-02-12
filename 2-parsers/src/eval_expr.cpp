@@ -8,13 +8,13 @@ int main(int argc, char *argv[])
 
     for(int i = 1; i < argc -1; i = i+2){
         std::string s(argv[i]);
-        std::cout << s << '\n';
+        //std::cout << s << '\n';
         double tmp(atof(argv[i+1]));
-        std::cout << tmp << '\n';
+        //std::cout << tmp << '\n';
         bindings.insert(std::pair<std::string,double>(s,tmp));
     }
 
-    std::cout << bindings["x"] << '\n';
+    //std::cout << bindings["x"] << '\n';
     // TODO : for each pair of arguments:
     //  - read the variable name
     //  - parse the value
