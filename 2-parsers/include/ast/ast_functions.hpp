@@ -44,6 +44,12 @@ public:
 
     virtual const char *getFunction() const
     { return "log"; }
+    virtual double evaluate(
+        const std::map<std::string,double> &bindings
+    ) const
+    {
+        return log(getArg()->evaluate(bindings));
+    }
 };
 
 class ExpFunction
@@ -56,6 +62,12 @@ public:
 
     virtual const char *getFunction() const
     { return "exp"; }
+    virtual double evaluate(
+        const std::map<std::string,double> &bindings
+    ) const
+    {
+        return exp(getArg()->evaluate(bindings));
+    }
 };
 
 class SqrtFunction
@@ -68,6 +80,13 @@ public:
 
     virtual const char *getFunction() const
     { return "sqrt"; }
+
+    virtual double evaluate(
+        const std::map<std::string,double> &bindings
+    ) const
+    {
+        return sqrt(getArg()->evaluate(bindings));
+    }
 };
 
 
