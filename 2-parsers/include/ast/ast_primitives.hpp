@@ -38,6 +38,7 @@ public:
         }else{
             std::cout << 0;
         }
+        return 0;
     }
 
 };
@@ -71,6 +72,7 @@ public:
     ) const
     {
         std::cout << 0;
+        return 0;
     }
 };
 

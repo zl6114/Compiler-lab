@@ -69,6 +69,7 @@ public:
         std::cout<<" ";
         getRight()->differentiate(variable);
         std::cout<<" )";
+        return 0;
     }
 };
 
@@ -98,6 +99,7 @@ public:
         std::cout<<" ";
         getRight()->differentiate(variable);
         std::cout<<" )";
+        return 0;
     }
 };
 
@@ -137,7 +139,7 @@ public:
             getRight()->differentiate(variable);
             std::cout<<" )";
         std::cout<<" )";
-
+        return 0;
     }
 };
 
@@ -183,6 +185,7 @@ public:
         std::cout << " * ";
         getRight()->print();
         std::cout<<" )";
+        return 0;
     }
 };
 

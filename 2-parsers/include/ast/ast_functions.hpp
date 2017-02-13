@@ -50,6 +50,20 @@ public:
     {
         return log(getArg()->evaluate(bindings));
     }
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout << "( ";
+            getArg()->differentiate(variable);
+        std::cout<<" * ";
+            std::cout<<"( 1 / ";
+            getArg()->print();
+            std::cout<<" )";
+        std::cout<<" )";
+        return 0;
+    }
 };
 
 class ExpFunction
@@ -80,6 +94,7 @@ public:
             getArg()->print();
             std::cout<<" )";
         std::cout<<" )";
+        return 0;
     }
 
 
@@ -121,6 +136,7 @@ public:
                 std::cout<<" )";
             std::cout<<" )";
         std::cout << " )";
+        return 0;
     }
 };
 

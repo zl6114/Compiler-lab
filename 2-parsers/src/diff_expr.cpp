@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     //std::string s;
     //int i = 0;
     //bool num = true;
-    std::cout << argv[1] << argv[2] << std::endl;
+    //std::cout << argv[1] << argv[2] << std::endl;
     /*for(int i = 1; i < argc-1; i++){
         std::string s(argv[i]);
         const Expression *ast=parseAST();
