@@ -57,11 +57,19 @@ public:
     const std::map<std::string,double> &bindings
     ) const
     {return (getLeft()->evaluate(bindings) + getRight()->evaluate(bindings));}
-    
+
     virtual const Expression *differentiate(
         const std::string &variable
     ) const
-    { throw std::runtime_error("Not implemented."); }
+    {
+        std::cout<<"( ";
+        getLeft()->differentiate(variable);
+        std::cout<<" ";
+        std::cout<<getOpcode();
+        std::cout<<" ";
+        getRight()->differentiate(variable);
+        std::cout<<" )";
+    }
 };
 
 class SubOperator
@@ -78,6 +86,19 @@ public:
     const std::map<std::string,double> &bindings
     ) const
     {return (getLeft()->evaluate(bindings) - getRight()->evaluate(bindings));}
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout<<"( ";
+        getLeft()->differentiate(variable);
+        std::cout<<" ";
+        std::cout<<getOpcode();
+        std::cout<<" ";
+        getRight()->differentiate(variable);
+        std::cout<<" )";
+    }
 };
 
 class MulOperator
@@ -94,6 +115,30 @@ public:
     const std::map<std::string,double> &bindings
     ) const
     {return (getLeft() -> evaluate(bindings) * getRight() -> evaluate(bindings));}
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout<<"( ";
+            std::cout<<"( ";
+            getLeft()->differentiate(variable);
+            std::cout<<" ";
+            std::cout<<getOpcode();
+            std::cout<<" ";
+            getRight()->print();
+            std::cout<<" )";
+        std::cout<<" + ";
+            std::cout<<"( ";
+            getLeft()->print();
+            std::cout<<" ";
+            std::cout<<getOpcode();
+            std::cout<<" ";
+            getRight()->differentiate(variable);
+            std::cout<<" )";
+        std::cout<<" )";
+
+    }
 };
 
 class DivOperator
@@ -110,6 +155,35 @@ public:
     const std::map<std::string,double> &bindings
     )const
     {return (getLeft() -> evaluate(bindings) / getRight() -> evaluate(bindings));}
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout<<"( ";
+            std::cout<<"( ";
+                std::cout<<"( ";
+                getLeft()->differentiate(variable);
+                std::cout<<" ";
+                std::cout<<getOpcode();
+                std::cout<<" ";
+                getRight()->print();
+                std::cout<<" )";
+            std::cout<<" - ";
+                std::cout<<"( ";
+                getLeft()->print();
+                std::cout<<" ";
+                std::cout<<getOpcode();
+                std::cout<<" ";
+                getRight()->differentiate(variable);
+                std::cout<<" )";
+            std::cout<<" )";
+        std::cout << " / ";
+        getRight()->print();
+        std::cout << " * ";
+        getRight()->print();
+        std::cout<<" )";
+    }
 };
 
 #endif

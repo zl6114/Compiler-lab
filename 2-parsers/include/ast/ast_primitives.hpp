@@ -29,6 +29,17 @@ public:
         return x;
     }
 
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        if(id == variable){
+            std::cout << 1;
+        }else{
+            std::cout << 0;
+        }
+    }
+
 };
 
 class Number
@@ -48,12 +59,19 @@ public:
     {
         std::cout<<value;
     }
+
     virtual double evaluate(
         const std::map<std::string,double> &bindings
     ) const
     { return value;
     }
 
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout << 0;
+    }
 };
 
 

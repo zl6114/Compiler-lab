@@ -68,6 +68,21 @@ public:
     {
         return exp(getArg()->evaluate(bindings));
     }
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout << "( ";
+            getArg()->differentiate(variable);
+        std::cout<<" * ";
+            std::cout<<getFunction()<<"( ";
+            getArg()->print();
+            std::cout<<" )";
+        std::cout<<" )";
+    }
+
+
 };
 
 class SqrtFunction
@@ -86,6 +101,26 @@ public:
     ) const
     {
         return sqrt(getArg()->evaluate(bindings));
+    }
+
+    virtual const Expression *differentiate(
+        const std::string &variable
+    ) const
+    {
+        std::cout << "( ";
+            std::cout << "( ";
+                std::cout << "1 / 2 ";
+                std::cout << " * ";
+                getArg()->differentiate(variable);
+            std::cout<<" )";
+            std::cout<< " * ";
+            std::cout << "( ";
+                std::cout << "1 / ";
+                std::cout<<getFunction()<<"( ";
+                getArg()->print();
+                std::cout<<" )";
+            std::cout<<" )";
+        std::cout << " )";
     }
 };
 

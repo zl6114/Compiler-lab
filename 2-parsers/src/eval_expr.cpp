@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     std::map<std::string,double> bindings;
 
-    for(int i = 1; i < argc -1; i = i+2){
+    for(int i = 1; i < argc; i = i+2){
         std::string s(argv[i]);
         //std::cout << s << '\n';
         double tmp(atof(argv[i+1]));
