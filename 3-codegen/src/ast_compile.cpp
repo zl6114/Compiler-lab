@@ -2,6 +2,7 @@
 
 #include <string>
 #include <regex>
+#include <sstream>
 
 static int makeNameUnq=0;
 
@@ -22,7 +23,7 @@ void CompileRec(
     }else if( regex_match( program->type, reId ) ){
         std::string zero = makeName("zero");
         std::cout<<"const "<<zero<<" 0"<<std::endl;
-        std::cout<<"add "<<program->type<<" "<<destReg<<" "<<zero<<std::endl;
+        std::cout<<"add "<<destReg<<" "<<program->type<<" "<<zero<<std::endl;
     }else if(program->type=="Param"){
         std::cout<<"param "<<destReg<<" "<<program->value<<std::endl;
     }else if(program->type=="Seq"){
@@ -35,8 +36,10 @@ void CompileRec(
         CompileRec(destReg, program->branches.at(0));
         std::cout<<"add "<<"_res_0"<<" "<<destReg<<" "<<"_zero_1"<<std::endl;
     }else if(program->type=="Assign"){
+        destReg = program->value;
         CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="Add"){
+        //std::cout << "destReg is "<<destReg << '\n';
         std::string rDst = destReg;
         CompileRec(destReg, program->branches.at(0));
         std::string rA = destReg;
