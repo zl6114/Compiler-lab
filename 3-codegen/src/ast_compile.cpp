@@ -33,19 +33,16 @@ void CompileRec(
     }else if(program->type=="Input"){
         std::cout<<"input "<<destReg<<std::endl;
     }else if(program->type=="Output"){
-        CompileRec(destReg, program->branches.at(0));
-        std::cout<<"add "<<"_res_0"<<" "<<destReg<<" "<<"_zero_1"<<std::endl;
+        std::string zero = makeName("zero");
+        std::cout<<"const "<<zero<<" 0"<<std::endl;
+        std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type<<" "<<zero<<std::endl;
+        std::cout << "" << '\n';
     }else if(program->type=="Assign"){
         destReg = program->value;
         CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="Add"){
-        //std::cout << "destReg is "<<destReg << '\n';
-        std::string rDst = destReg;
-        CompileRec(destReg, program->branches.at(0));
-        std::string rA = destReg;
-        CompileRec(destReg, program->branches.at(1));
-        std::string rB = destReg;
-        std::cout<<"add "<<rDst<<" "<<rA<<" "<<rB<<std::endl;
+        std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type
+        <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="Sub"){
 
     }else if(program->type=="LessThan"){
