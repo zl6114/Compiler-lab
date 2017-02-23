@@ -45,6 +45,7 @@ void CompileRec(
         if( regex_match( (program->branches.at(1))->type, reNum ) ){
             std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
         }
+
         std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="Sub"){
@@ -57,11 +58,16 @@ void CompileRec(
         std::cout<<"sub "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="LessThan"){
-
+        if( regex_match( (program->branches.at(0))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(0))->type<<" "<<(program->branches.at(0))->type<<std::endl;
+        }
+        if( regex_match( (program->branches.at(1))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
+        }
+        std::cout<<"lt "<<destReg<<" "<<(program->branches.at(0))->type<<" "<<(program->branches.at(1))->type<<std::endl;
+        //CompileRec(destReg,(program->branches.at(1)));
     }else if(program->type=="While"){
-        //std::string top = "top";
         std::string top=makeName("top");
-        //std::string bottom = "bottom";
         std::string bottom=makeName("bottom");
         std::cout <<":" << top << '\n';
         std::string zero = makeName("zero");
