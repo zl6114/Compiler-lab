@@ -39,12 +39,21 @@ void CompileRec(
         destReg = program->value;
         CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="Add"){
-        //if( regex_match( (program->branches.at(1))->type, reId ) ){
-        //    std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
-        //}
+        if( regex_match( (program->branches.at(0))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(0))->type<<" "<<(program->branches.at(0))->type<<std::endl;
+        }
+        if( regex_match( (program->branches.at(1))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
+        }
         std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="Sub"){
+        if( regex_match( (program->branches.at(0))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(0))->type<<" "<<(program->branches.at(0))->type<<std::endl;
+        }
+        if( regex_match( (program->branches.at(1))->type, reNum ) ){
+            std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
+        }
         std::cout<<"sub "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="LessThan"){
