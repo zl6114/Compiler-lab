@@ -33,24 +33,49 @@ void CompileRec(
     }else if(program->type=="Input"){
         std::cout<<"input "<<destReg<<std::endl;
     }else if(program->type=="Output"){
-        std::string zero = makeName("zero");
-        std::cout<<"const "<<zero<<" 0"<<std::endl;
-        std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type<<" "<<zero<<std::endl;
-        std::cout << "" << '\n';
+        std::cout<<"output "<<(program->branches.at(0))->type<<"\n";
+        CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="Assign"){
         destReg = program->value;
         CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="Add"){
+        //if( regex_match( (program->branches.at(1))->type, reId ) ){
+        //    std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
+        //}
         std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="Sub"){
-
+        std::cout<<"sub "<<destReg<<" "<<(program->branches.at(0))->type
+        <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="LessThan"){
 
     }else if(program->type=="While"){
-
+        //std::string top = "top";
+        std::string top=makeName("top");
+        //std::string bottom = "bottom";
+        std::string bottom=makeName("bottom");
+        std::cout <<":" << top << '\n';
+        std::string zero = makeName("zero");
+        std::cout<<"const "<<zero<<" 0"<<std::endl;
+        std::cout << "beq " <<(program->branches.at(0))->type <<" "<<zero<<" "<<bottom<< '\n';
+        CompileRec((program->branches.at(0))->type, (program->branches.at(1)));
+        std::cout << "beq "<< zero << " " << zero << " " << top << '\n';
+        std::cout <<":" <<bottom << '\n';
+        CompileRec(destReg, program->branches.at(0));
     }else if(program->type=="If"){
-
+        std::string ELSE=makeName("else");
+        //std::string ELSE = "else";
+        std::string JUMP=makeName("L1");
+        //std::string JUMP = "L1";
+        std::string zero = makeName("zero");
+        std::cout<<"const "<<zero<<" 0"<<std::endl;
+        CompileRec(destReg, program->branches.at(0));
+        std::cout << "beq " <<destReg <<" "<<zero<<" "<<ELSE<< '\n';
+        CompileRec(destReg, program->branches.at(1));
+        std::cout << "beq " << zero <<" "<<zero<<" "<<JUMP<< '\n';
+        std::cout << ":" << ELSE << '\n';
+        CompileRec(destReg, program->branches.at(2));
+        std::cout << ":" << JUMP << '\n';
     }
     // TODO : handle the others
     else{
