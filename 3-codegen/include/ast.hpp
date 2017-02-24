@@ -19,12 +19,12 @@ struct Tree
         , value(_value)
         , branches(_branches)
     {}
-    
+
     Tree(std::string _type, std::string _value)
         : type(_type)
         , value(_value)
     {}
-    
+
     template<class ...TArgs>
     Tree(std::string _type, TArgs ...args)
         : type(_type)
@@ -89,6 +89,14 @@ int32_t Interpret(
     InterpretContext &context,
     TreePtr program
 );
+
+int32_t Constant_fold(
+    InterpretContext &context,
+    TreePtr program,
+    bool changed
+);
+
+
 
 void Compile(
     TreePtr program

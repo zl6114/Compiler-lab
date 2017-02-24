@@ -45,7 +45,6 @@ void CompileRec(
         if( regex_match( (program->branches.at(1))->type, reNum ) ){
             std::cout<<"const "<<(program->branches.at(1))->type<<" "<<(program->branches.at(1))->type<<std::endl;
         }
-
         std::cout<<"add "<<destReg<<" "<<(program->branches.at(0))->type
         <<" "<<(program->branches.at(1))->type<<std::endl;
     }else if(program->type=="Sub"){
