@@ -96,7 +96,11 @@ int32_t Constant_fold(
     bool changed
 );
 
-
+int32_t Dead_branch_removal(
+    InterpretContext &context, // Contains the parameters and variable bindings
+    TreePtr program,
+    bool changed
+);
 
 void Compile(
     TreePtr program
