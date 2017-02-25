@@ -2,6 +2,12 @@
 
 #include <regex>
 
+void propagation(
+    InterpretContext &context, // Contains the parameters and variable bindings
+    TreePtr program,
+    bool &changed,
+    int i);
+
 int32_t Constant_propagation(
     InterpretContext &context, // Contains the parameters and variable bindings
     TreePtr program,
@@ -14,6 +20,13 @@ int32_t Constant_propagation(
         return std::atol(program->type.c_str());
     // TODO : Check for things matching reId
     }else if( regex_match(program->type, reId) ){
+        if((context.bindings[program->type] != NULL) && (changed == false)){
+            int32_t val = context.bindings[program->type];
+            std::string s = std::to_string(context.bindings[program->type]);
+            program->type = s;
+            changed = true;
+            //exit(0);
+        }
         return (context.bindings[program->type]);
     }else if(program->type=="Param"){
         unsigned index=atol(program->value.c_str());
@@ -34,26 +47,10 @@ int32_t Constant_propagation(
         }
         return val;
     }else if(program->type=="Assign"){
-        if( regex_match( (program->branches[0])->type, reId ) ){
-            //std::cout << "program->branches[0]->value   " << program->branches[0]->value << '\n';
-            std::string s = std::to_string(context.bindings[program->branches[0]->type]);
-            std::cout << "context.bindings[program->branches[0]->type " << context.bindings[program->branches[0]->type] << '\n';
-            program->branches[0]->type = s;
-            changed = true;
-            return 0;
-        }
         int32_t val=Constant_propagation(context, program->branches.at(0),changed);
         context.bindings[program->value] = val;
         return val;
     }else if(program->type=="Add"){
-        if( regex_match( (program->branches[0])->type, reId ) ){
-            //std::cout << "program->branches[0]->value   " << program->branches[0]->value << '\n';
-            std::string s = std::to_string(context.bindings[program->branches[0]->type]);
-            std::cout << "context.bindings[program->branches[0]->type " << context.bindings[program->branches[0]->type] << '\n';
-            program->branches[0]->type = s;
-            changed = true;
-            return 0;
-        }
         int32_t val1 = Constant_propagation(context, program->branches.at(0),changed);
         int32_t val2 = Constant_propagation(context, program->branches.at(1),changed);
         return val1 + val2;
@@ -88,5 +85,21 @@ int32_t Constant_propagation(
     // TODO: Handle other constructs
     else{
         throw std::runtime_error("Unknown construct '"+program->type+"'");
+    }
+}
+
+void propagation(
+    InterpretContext &context, // Contains the parameters and variable bindings
+    TreePtr program,
+    bool &changed,
+    int i)
+    {
+    std::regex reId("^[a-z][a-z0-9]*$");
+    if( regex_match( (program->branches[i])->type, reId ) ){
+        if(context.bindings[program->branches[i]->type] != NULL){
+            std::string s = std::to_string(context.bindings[program->branches[i]->type]);
+            program->branches[i]->type = s;
+            changed = true;
+        }
     }
 }
