@@ -93,13 +93,19 @@ int32_t Interpret(
 int32_t Constant_fold(
     InterpretContext &context,
     TreePtr program,
-    bool changed
+    bool &changed
 );
 
-int32_t Dead_branch_removal(
+int32_t Dead_branches_removal(
     InterpretContext &context, // Contains the parameters and variable bindings
     TreePtr program,
-    bool changed
+    bool &changed
+);
+
+int32_t Constant_propagation(
+    InterpretContext &context, // Contains the parameters and variable bindings
+    TreePtr program,
+    bool &changed
 );
 
 void Compile(

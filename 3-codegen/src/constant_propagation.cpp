@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     bool changed = false;
     TreePtr src=Parse(code);
     PrettyPrint(std::cerr, src);
-    Constant_fold(context, src, changed);
+    Constant_propagation(context, src, changed);
     PrettyPrint(std::cerr, src);
     if(changed = true){
         return 0;
