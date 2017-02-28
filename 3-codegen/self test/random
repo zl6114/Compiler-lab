@@ -1,4 +1,5 @@
 Seq [
-  Assign : x [ 10 ]
-  x
+  Assign : a [ Param : 0 ]
+  Assign : b [ Param : 1 ]
+  Add [ a b ]
 ]
