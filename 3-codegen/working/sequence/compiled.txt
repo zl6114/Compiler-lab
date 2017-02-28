@@ -1,0 +1,9 @@
+const x 10
+const y 11
+const z 10
+add x x y
+add z x z
+output z
+const _zero_1 0
+add _res_0 z _zero_1
+halt _res_0

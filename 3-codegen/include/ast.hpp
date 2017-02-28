@@ -112,5 +112,11 @@ void Compile(
     TreePtr program
 );
 
+void MipsGen(
+    TreePtr program,
+    std::ofstream &src1,
+    std::vector<std::string>& v
+);
+
 
 #endif

@@ -1,6 +1,0 @@
-Seq [
-  Assign : x [ 10 ]
-  Assign : y [ 20 ]
-  Assign : z [ Add [ x y ] ]
-  x
-]
