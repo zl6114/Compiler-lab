@@ -1,4 +1,0 @@
-const x 10
-const _zero_1 0
-add _res_0 x _zero_1
-halt _res_0

@@ -1,4 +1,0 @@
-param a 0
-param b 1
-add _res_0 a b
-halt _res_0
